@@ -1,0 +1,38 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="spark_performance"
+version="1.0.0"
+displayName="Spark Performance Bridge"
+authors="Codex"
+description='''通过 EasyBot Bridge RPC 直连 Spark API 采集 TPS / MSPT / CPU / 内存 / 磁盘数据，供 EasyBot 插件查询。不使用 profiler，不依赖命令输出�? PlaceholderAPI�?'''
+
+[[dependencies.spark_performance]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0, 22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.spark_performance]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21, 1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.spark_performance]]
+    modId="easybot"
+    type="required"
+    versionRange="[0.1.0-rc.4,)"
+    ordering="AFTER"
+    side="SERVER"
+
+[[dependencies.spark_performance]]
+    modId="spark"
+    type="optional"
+    versionRange="[1.10.0,)"
+    ordering="NONE"
+    side="SERVER"
