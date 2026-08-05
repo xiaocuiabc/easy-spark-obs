@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b1020; }
+  .card { width: 840px; padding: 26px 30px; background: linear-gradient(160deg, #0f172a 0%, #0b1222 55%, #0d1526 100%); border: 1px solid #1f2b45; border-radius: 18px; font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif; color: #e2e8f0; }
+  .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #1f2b45; padding-bottom: 14px; }
+  .title { font-size: 22px; font-weight: 800; color: #fbbf24; letter-spacing: 1px; }
+  .sub { margin-top: 4px; font-size: 13px; color: #94a3b8; }
+  .time { font-size: 12px; color: #64748b; text-align: right; }
+  .section { margin-top: 20px; }
+  .section-label { margin-bottom: 10px; font-size: 12px; color: #94a3b8; letter-spacing: 2px; }
+  .meta-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .meta-card { padding: 12px 14px; background: #0b1222; border: 1px solid #1e293b; border-radius: 12px; }
+  .meta-label { font-size: 12px; color: #94a3b8; }
+  .meta-value { margin-top: 4px; font-family: Consolas, Menlo, monospace; font-size: 16px; font-weight: 700; color: #e2e8f0; }
+  .chips { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .chip { padding: 12px 8px; background: #0b1222; border: 1px solid #1e293b; border-radius: 12px; text-align: center; }
+  .chip-label { font-size: 12px; color: #94a3b8; }
+  .chip-value { margin-top: 4px; font-family: Consolas, Menlo, monospace; font-size: 20px; font-weight: 700; }
+  .chip.good .chip-value { color: #4ade80; }
+  .chip.warn .chip-value { color: #fbbf24; }
+  .chip.bad .chip-value { color: #f87171; }
+  .chip.muted .chip-value { color: #475569; }
+  .tick-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .tick-card { padding: 12px 14px; background: #0b1222; border: 1px solid #1e293b; border-radius: 12px; }
+  .tick-title { margin-bottom: 8px; font-size: 12px; color: #94a3b8; }
+  .tick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center; }
+  .tick-item span { display: block; font-size: 11px; color: #64748b; }
+  .tick-item b { font-family: Consolas, Menlo, monospace; font-size: 16px; color: #7dd3fc; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .stat-card { padding: 12px 14px; background: #0b1222; border: 1px solid #1e293b; border-radius: 12px; }
+  .stat-label { font-size: 12px; color: #94a3b8; }
+  .stat-value { margin-top: 4px; font-family: Consolas, Menlo, monospace; font-size: 18px; font-weight: 700; color: #e2e8f0; }
+  .stat-sub { margin-top: 5px; font-size: 11px; color: #64748b; line-height: 1.5; }
+  .bar-row { margin-top: 10px; padding: 12px 14px; background: #0b1222; border: 1px solid #1e293b; border-radius: 12px; }
+  .bar-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+  .bar-head .bar-percent { font-family: Consolas, Menlo, monospace; font-size: 15px; font-weight: 700; }
+  .bar-track { margin-top: 8px; height: 8px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #22d3ee, #4ade80); }
+  .bar-fill.warn { background: linear-gradient(90deg, #fbbf24, #f97316); }
+  .bar-fill.bad { background: linear-gradient(90deg, #f87171, #ef4444); }
+  .bar-fill.muted { background: #334155; }
+  .notice { margin-bottom: 10px; padding: 10px 12px; background: #3b1d1d; border: 1px solid #7f1d1d; border-radius: 10px; font-size: 12px; color: #fca5a5; }
+  .footer { margin-top: 16px; font-size: 11px; color: #475569; text-align: center; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div><div class="title">⚡ 服务器性能</div><div class="sub">我的服务器 · NeoForge 21.1 · 1.21.1</div></div>
+      <div class="time">2026/8/5 20:28:47</div>
+    </div>
+    <div class="section"><div class="meta-row">      <div class="meta-card"><div class="meta-label">在线玩家</div><div class="meta-value">12 / 20</div></div>      <div class="meta-card"><div class="meta-label">运行时长</div><div class="meta-value">5 天 3 小时</div></div>      <div class="meta-card"><div class="meta-label">数据源</div><div class="meta-value" style="font-size:13px">Spark API 直连</div></div>    </div></div>
+    <div class="section"><div class="section-label">TPS（最近 5s / 10s / 1m / 5m / 15m）</div><div class="chips"><div class="chip tps good"><div class="chip-label">5s</div><div class="chip-value">20</div></div><div class="chip tps good"><div class="chip-label">10s</div><div class="chip-value">19.92</div></div><div class="chip tps good"><div class="chip-label">1m</div><div class="chip-value">19.71</div></div><div class="chip tps warn"><div class="chip-label">5m</div><div class="chip-value">19.05</div></div><div class="chip tps warn"><div class="chip-label">15m</div><div class="chip-value">18.22</div></div></div></div>
+    <div class="section"><div class="section-label">Tick 耗时（MSPT）</div><div class="tick-row"><div class="tick-card"><div class="tick-title">最近 10s · Tick 耗时 (ms)</div><div class="tick-grid"><div class="tick-item"><span>最小</span><b>1.02</b></div><div class="tick-item"><span>中位</span><b>1.48</b></div><div class="tick-item"><span>95%ile</span><b>2.21</b></div><div class="tick-item"><span>最大</span><b>3.77</b></div></div></div><div class="tick-card"><div class="tick-title">最近 1m · Tick 耗时 (ms)</div><div class="tick-grid"><div class="tick-item"><span>最小</span><b>1.1</b></div><div class="tick-item"><span>中位</span><b>1.65</b></div><div class="tick-item"><span>95%ile</span><b>3.02</b></div><div class="tick-item"><span>最大</span><b>5.4</b></div></div></div><div class="tick-card"><div class="tick-title">最近 5m · Tick 耗时 (ms)</div><div class="tick-grid"><div class="tick-item"><span>最小</span><b>1.05</b></div><div class="tick-item"><span>中位</span><b>1.58</b></div><div class="tick-item"><span>95%ile</span><b>2.95</b></div><div class="tick-item"><span>最大</span><b>6.1</b></div></div></div></div></div>
+    <div class="section"><div class="section-label">CPU 使用率（10s / 1m / 15m）</div><div class="row3">      <div class="stat-card"><div class="stat-label">CPU 进程</div><div class="stat-value">11.2%</div><div class="stat-sub">12.4% · 11.2% · 9.8%</div></div>      <div class="stat-card"><div class="stat-label">CPU 系统</div><div class="stat-value">39.2%</div><div class="stat-sub">41.5% · 39.2% · 33.6%</div></div>      <div class="stat-card"><div class="stat-label">Tick 耗时</div><div class="stat-value">1.65ms</div><div class="stat-sub">1 分钟中位数</div></div>    </div></div>
+    <div class="section"><div class="section-label">内存</div><div class="bar-row"><div class="bar-head"><span>堆内存（JVM）</span><span class="bar-percent">25%</span></div><div class="bar-track"><div class="bar-fill good" style="width:25%"></div></div><div class="stat-sub" style="margin-top:6px">2 GB / 8 GB</div></div><div class="bar-row"><div class="bar-head"><span>系统内存</span><span class="bar-percent">70.4%</span></div><div class="bar-track"><div class="bar-fill warn" style="width:70.4%"></div></div><div class="stat-sub" style="margin-top:6px">11.3 GB / 16 GB</div></div>    </div>
+    <div class="section"><div class="section-label">磁盘</div><div class="bar-row"><div class="bar-head"><span>服务器目录所在盘</span><span class="bar-percent">18.4%</span></div><div class="bar-track"><div class="bar-fill good" style="width:18.4%"></div></div><div class="stat-sub" style="margin-top:6px">92 GB / 500 GB</div></div>    </div>
+
+    <div class="footer">数据来源：Spark API 直连（EasyBot Bridge RPC）· 未使用 profiler</div>
+  </div>
+</body>
+</html>
