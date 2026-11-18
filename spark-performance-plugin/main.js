@@ -6,19 +6,19 @@
  * 触发方式：群聊 / 私聊发送 性能（或 /性能）
  *
  * 数据链路：
- *   1. 服务器端安装 spark-performance-bridge mod（NeoForge），
- *      注册为 EasyBot Bridge 扩展 "bridge:spark_performance"。
+ *   1. 服务器端在 plugins/ 安装 SparkPerformance 插件（Bukkit 插件，与 EasyBot 插件版一起），
+ *      注册为 EasyBot Bridge 扩展 "bridge:spark_performance"；Spark 使用模组版或 Bukkit 插件版。
  *   2. 本插件收到「性能」后，调用 bridge.RpcInvoke("bridge:spark_performance",
  *      "get_metrics", {})，RPC 走 EasyBot Bridge 自己的 WebSocket 通道，
  *      不经过命令输出，因此不受 EasyBot「命令只返回第一行」的 bug 影响；
  *      也不需要 PlaceholderAPI。
- *   3. 服务端扩展通过 Spark Java API（SparkProvider）直连采集
+ *   3. 服务端插件通过 Spark Java API（SparkProvider）直连采集
  *      TPS / MSPT / CPU，并用 JDK 采集内存与磁盘，不使用 profiler。
  *   4. 本插件用 puppeteer 把指标渲染成仪表盘图片发回 QQ。
  */
 
 // ===== 配置 =====
-// 服务器扩展标识，必须与 spark-performance-bridge mod 中 getIdentifier() 一致
+// 服务器扩展标识，必须与 SparkPerformance 插件中 getIdentifier() 一致
 const EXTENSION_ID = "bridge:spark_performance";
 // 服务器扩展提供的 RPC 方法名
 const RPC_METHOD = "get_metrics";
@@ -308,7 +308,7 @@ function buildDashboardHtml(metrics, meta) {
         barRow("服务器目录所在盘", metrics.disk, formatUsage(metrics.disk)) +
         "    </div>",
         (hasSpark ? "" :
-            '    <div class="section"><div class="notice">未获取到 Spark 数据：请确认服务器已安装 Spark 插件，且 spark-performance-bridge mod 能加载。当前仅显示内存 / 磁盘 / 服务器基础信息。</div></div>'),
+            '    <div class="section"><div class="notice">未获取到 Spark 数据：请确认服务器已安装 Spark（模组版或 Bukkit 插件版），且 plugins 目录中的 SparkPerformance 插件已启用。当前仅显示内存 / 磁盘 / 服务器基础信息。</div></div>'),
         '    <div class="footer">数据来源：Spark API 直连（EasyBot Bridge RPC）· 未使用 profiler</div>',
         "  </div>",
         "</body>",
@@ -409,7 +409,7 @@ async function handlePerformanceRequest(event) {
             await event.Context.Reply(
                 new MessageChain().Text(
                     "服务器性能扩展不可用：\n" + msg +
-                    "\n\n请确认服务器 mods 目录已安装 spark-performance-bridge mod，且 EasyBot（NeoForge 版）Bridge ≥ 0.1.0-rc.4。"
+                    "\n\n请确认服务器 plugins 目录已安装 SparkPerformance 插件，EasyBot 为插件版（≥ 2.4.0），且 Spark 已加载。"
                 )
             );
             return;

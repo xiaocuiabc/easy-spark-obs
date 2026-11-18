@@ -1,0 +1,18 @@
+name: SparkPerformance
+version: '${version}'
+main: com.sparkperf.SparkPerformancePlugin
+api-version: '1.21'
+description: Spark performance metrics bridge for the EasyBot Bukkit plugin (no EasyBot mod required).
+authors: [abcxiaocui]
+website: https://spark.lucko.me/
+depend: [EasyBot]
+softdepend: [spark]
+commands:
+  sparkperf:
+    description: Spark performance bridge debug command
+    usage: /sparkperf <status|metrics>
+    permission: sparkperf.admin
+permissions:
+  sparkperf.admin:
+    description: Allows use of /sparkperf
+    default: op
