@@ -1,0 +1,15 @@
+# Local test instances / decompiled sources / scratch work
+.work/
+
+# Build output of the Bukkit plugin project
+spark-performance-bridge-bukkit/.gradle/
+spark-performance-bridge-bukkit/build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store

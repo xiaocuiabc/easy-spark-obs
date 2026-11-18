@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.sparkperf'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url = uri('https://repo.papermc.io/repository/maven-public/') }
+    maven { url = uri('https://repo.lucko.me/') }
+}
+
+sourceSets {
+    // Compile-only stubs for the EasyBot bridge API. They are NOT packaged
+    // into the output jar: at runtime the real classes come from the
+    // EasyBot plugin (declared with `depend: [EasyBot]` in plugin.yml).
+    stub {
+        java.srcDir 'src/stub/java'
+    }
+    main {
+        compileClasspath += sourceSets.stub.output
+        runtimeClasspath += sourceSets.stub.output
+    }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
+    compileOnly 'me.lucko:spark-api:0.1-SNAPSHOT'
+    compileOnly 'com.google.code.gson:gson:2.10.1'
+
+    stubImplementation 'com.google.code.gson:gson:2.10.1'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    withSourcesJar()
+}
+
+tasks.named('compileJava') {
+    dependsOn tasks.named('compileStubJava')
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('compileStubJava') {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('processResources') {
+    filesMatching('plugin.yml') {
+        expand(version: project.version)
+    }
+}
+
+tasks.named('jar') {
+    // Bukkit 1.21.1 build. The plugin is compiled against Paper 1.21.1 and
+    // requires Java 21, so it is not a "works on every Bukkit version" jar.
+    archiveBaseName = 'SparkPerformanceBridge-Bukkit-1.21.1'
+}
+
+tasks.named('sourcesJar') {
+    archiveBaseName = 'SparkPerformanceBridge-Bukkit-1.21.1'
+}

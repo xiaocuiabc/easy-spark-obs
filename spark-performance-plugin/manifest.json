@@ -3,10 +3,10 @@
   "version": "2.0.0",
   "plugin_id": "spark_performance_plugin",
   "author": "abcxiaocui",
-  "description": "在 QQ 发送「性能」时，通过服务器端 Spark 性能扩展（bridge:spark_performance）的 RPC 直连 Spark API 采集 TPS / MSPT / CPU / 内存 / 磁盘，渲染成性能图表图片回复。不使用 profiler，不受 EasyBot 命令只返回第一行的 bug 影响，无需 PlaceholderAPI。",
+  "description": "在 QQ 发送「性能」时，通过服务器端 SparkPerformance 插件（bridge:spark_performance）的 RPC 直连 Spark API 采集 TPS / MSPT / CPU / 内存 / 磁盘，渲染成性能图表图片回复。服务器使用模组版或 Bukkit 插件版 Spark，无需 EasyBot 模组，不使用 profiler，不受 EasyBot 命令只返回第一行的 bug 影响，无需 PlaceholderAPI。",
   "tags": ["性能", "TPS", "Spark", "服务器状态"],
   "entry": "main.js",
-  "contents": "# Spark 性能图表\n\n群聊或私聊发送 `性能`（或 `/性能`），机器人会调用服务器上的 Spark 性能扩展获取数据并渲染成图片回复。\n\n## 依赖\n\n- 服务器安装 EasyBot（NeoForge 版，Bridge ≥ 0.1.0-rc.4）与 Spark 插件\n- 服务器 mods 目录安装 spark-performance-bridge mod\n- EasyBot 安装了渲染浏览器（推荐 ChromeHeadlessShell），否则自动退回纯文本回复",
+  "contents": "# Spark 性能图表\n\n群聊或私聊发送 `性能`（或 `/性能`），机器人会调用服务器上的 Spark 性能扩展获取数据并渲染成图片回复。\n\n## 依赖\n\n- 服务器是 Youer / Paper 1.21.1（安装模组版或 Bukkit 插件版 Spark）\n- 服务器 plugins 目录安装 EasyBot 插件版（≥ 2.4.0）与 SparkPerformanceBridge-Bukkit-1.21.1-1.0.0.jar\n- EasyBot 安装了渲染浏览器（推荐 ChromeHeadlessShell），否则自动退回纯文本回复",
   "links": [
     {
       "name": "Spark 插件官网",
